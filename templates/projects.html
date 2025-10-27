@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mb-4">
+    <h1 class="fw-bold text-primary"><i class="bi bi-folder"></i> Projects</h1>
+    <p class="text-muted">Create and manage your projects</p>
+</div>
+<div class="card p-4 mb-4">
+    <h5><i class="bi bi-plus-circle"></i> Add New Project</h5>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-md-6 mb-3">{{ form.name.label(class="form-label") }} {{ form.name(class="form-control") }}</div>
+            <div class="col-md-6 mb-3">{{ form.description.label(class="form-label") }} {{ form.description(class="form-control") }}</div>
+        </div>
+        {{ form.submit(class="btn btn-success") }}
+    </form>
+</div>
+<div class="row">
+    {% for project in projects %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-folder-fill"></i> {{ project.name }}</h5>
+                    <p class="card-text">{{ project.description or 'No description' }}</p>
+                    <span class="badge bg-info">{{ project.status }}</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
