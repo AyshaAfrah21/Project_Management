@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Project, Task
-from forms import LoginForm, ProjectForm, TaskForm
+from forms import LoginForm, ProjectForm, TaskForm,SignupForm
 from datetime import datetime
 
 main = Blueprint('main', __name__)
@@ -73,11 +73,10 @@ def admin():
     users = User.query.all()
     return render_template('admin.html', users=users)
 
-# ... (existing imports)
 
-from forms import LoginForm, ProjectForm, TaskForm, SignupForm  # Add SignupForm
 
-# ... (existing routes)
+
+
 
 @main.route('/signup', methods=['GET', 'POST'])
 def signup():
